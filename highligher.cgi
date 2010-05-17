@@ -4,50 +4,16 @@
 # Distributed under the GNU General Public License
 # http://www.gnu.org/licenses/gpl.html
 #
-# 2009-05-13: Initial Release
-# 2010-05-12: Added Documentation and changed one of the styles to make the
-#               numbers a fixed-width font
+# 2009-05-13:   Initial Release
+# 2010-05-12:   Added Documentation to README
+#               Changed one of the styles to make the numbers a fixed-width font
 # 
-# Requires Apache with mod_cgi and mod_actions
-#   and Python with the Pygments module installed
 #
-# To install, place it in your /cgi-bin directory and make sure it's readable and
-# executable.
-#
-# Add the following lines into the main Apache config, a directive block in
-# your Apache config, or into an .htaccess file in individual directories.
-#
-# Add to or remove from this list to your liking. Only the first line and one
-# AddHandler line are necessary.
-#
-#    Action highlight /cgi-bin/highlight.cgi
-#    AddHandler highlight .py
-#    AddHandler highlight .pl
-#    AddHandler highlight .pm
-#    AddHandler highlight .perl
-#    AddHandler highlight .s
-#    AddHandler highlight .c
-#    AddHandler highlight .sh
-#    AddHandler highlight .html
-#    AddHandler highlight .cpp
-#    AddHandler highlight .xml
-#    AddHandler highlight .js
-#    AddHandler highlight .css
-#
-# The full list of highlightable syntaxes is available at http://pygments.org/languages/
+# To install, see README File
 #
 # WARNING: Be very sure that the directory to which you apply this contains the correct
 #           files you want to highlight. This can be a major security flaw if you share
 #           scripts and other files you don't intend to.
-#
-# Known Issues:
-#   The line numbers are sometimes useless, as they don't align with the code always. If
-#       this happens, try switching to another color in the list.
-#
-# TODO:
-#   Change the way the code is drawn to better align the line numbers.
-#   Eventually, I'd like to be able to accept settings through Apache to change stylesheets,
-#       default colorschemes, and more.
 
 import os
 import cgi

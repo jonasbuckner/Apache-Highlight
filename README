@@ -1,3 +1,4 @@
+Apache-Highlight
 Syntax Highlight Python and Send it as HTML
 
 Copyright 2010 Jonas Buckner
@@ -41,8 +42,8 @@ if you share scripts and other files you don't intend to.
 
 ChangeLog:
     2009-05-13: Initial Release
-    2010-05-12: Added Documentation and changed one of the styles to make the
-                numbers a fixed-width font
+    2010-05-12: Added Documentation
+                Changed one of the styles to make the numbers a fixed-width font
 
 Known Issues:
     The line numbers are sometimes useless, as they don't align with the code always. If
@@ -54,3 +55,4 @@ TODO:
     Serve syntax-highlighted files with Ajax by accessing them directly through a page
     Eventually, I'd like to be able to accept settings through Apache to change stylesheets,
         default colorschemes, and more.
+    Link to local include files so that projects can be browsed
