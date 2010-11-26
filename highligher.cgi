@@ -1,12 +1,13 @@
 #!/usr/bin/env python
-# highlight.cgi: Syntax Highlight Python and Send it as HTML
+# highlight.cgi: Syntax Highlight Code and Send it as HTML
 # Copyright 2009-2010 Jonas Buckner
 # Distributed under the GNU General Public License
 # http://www.gnu.org/licenses/gpl.html
 #
-# 2009-05-13:   Initial Release
-# 2010-05-12:   Added Documentation to README
-#               Changed one of the styles to make the numbers a fixed-width font
+# 2009-05-13: Initial Release
+# 2010-05-12: Added Documentation to README
+#             Changed one of the styles to make the numbers a fixed-width font
+# 2010-11-26: Added Link to download the highlighted file as plain text
 # 
 #
 # To install, see README File
@@ -34,11 +35,16 @@ fullcode = "".join(lines)
 for line in lines:
     uselexer = pyglexs.guess_lexer_for_filename(filename, line)
 
-colorscheme = "vs"
+colorscheme = "colorful"
 
 form = cgi.FieldStorage()
 if form.has_key("color") and form["color"].value != "":
     colorscheme = form["color"].value
+
+if form.has_key("action") and form["action"].value == "download":
+    print "Content-disposition: attachment; filename=%s\nContent-type: text/plain\n" % (os.path.basename(filename))
+    print fullcode
+    exit()
 
 usehtml = pygforms.HtmlFormatter(style=colorscheme, linenos='table')
 
@@ -72,6 +78,10 @@ body {
     padding-top:        0em;
     padding-bottom:     0.2em;
     padding-left:       0.5em;
+}
+
+#header h2 span {
+    font-size:          60%%;
 }
 
 ul.navbar {
@@ -128,6 +138,11 @@ ul.navbar li a {
     border-right:       3px double #000000;
 }
 
+.hightlighttable .linenos pre {
+    font-family:        "Courier", "Courier New", monospace;
+    line-height:        auto;
+}
+
 /*** Begin Pygments Styles ***/
 %s
 </style>
@@ -138,8 +153,8 @@ ul.navbar li a {
 
 print """
 <div id="header">
-  <h2>%s</h2>
-""" % os.path.basename(filename)
+  <h2>%s<span> (<a href="%s?action=download">download</a>)</span></h2>
+""" % (os.path.basename(filename), os.path.basename(filename))
 
 print '  <ul class="navbar">'
 colors = list(pygstyles.get_all_styles())
@@ -155,10 +170,8 @@ for color in colors:
 print "  </ul>"
 print "</div>\n"
 
-print pygments.highlight(fullcode, uselexer, usehtml)
 
-# for var in (cgi.os.environ.keys()):
-#     print "<p>%s : %s</p>" % (var, cgi.os.environ[var])
+print pygments.highlight(fullcode, uselexer, usehtml)
 
 print "</body>"
 print "</html>"

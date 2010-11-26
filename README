@@ -44,6 +44,7 @@ ChangeLog:
     2009-05-13: Initial Release
     2010-05-12: Added Documentation
                 Changed one of the styles to make the numbers a fixed-width font
+    2010-11-26: Added link to download a direct plaintext copy of the file
 
 Known Issues:
     The line numbers are sometimes useless, as they don't align with the code always. If
@@ -56,3 +57,5 @@ TODO:
     Eventually, I'd like to be able to accept settings through Apache to change stylesheets,
         default colorschemes, and more.
     Link to local include files so that projects can be browsed
+    Colorschemes should affect the whole colorscheme, including the header and line numbers.
+        Possibly this should use a little vector math to make the colors match the chosen theme.
